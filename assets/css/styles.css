@@ -1,0 +1,55 @@
+
+body {
+  background: #707a7d;
+  font-family: "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
+  letter-spacing: 1.5px;
+  padding-bottom: 50px;
+}
+
+.container { max-width: 1024px; padding: 0px; }
+
+.jumbotron {
+  background-color: #707a7d;
+  color: white;
+  height: 215px;
+  margin-bottom: 0;
+  padding-top: 0px;
+  text-align: center;
+}
+
+.jumbotron h1 {
+  font-weight: bold;
+}
+
+.jumbotron p {
+  font-size: 20px;
+  font-style: italic;
+}
+
+.card-header {
+  background: #4f161f;
+  text-align: center;
+}
+
+.card-header p {
+  font-family: Libre Baskerville, serif;
+  font-weight: bold;
+  font-size: 46px;
+  color: #e4c01c;
+  margin-bottom: 0px;
+}
+
+.card {
+  background: #cfcfcf;
+  width: 1024px;
+}
+
+
+
+th, tr { color: #4f161f; }
+
+
+button#new-train {
+  background-color: #4f161f;
+  color: #e4c01c;
+}
