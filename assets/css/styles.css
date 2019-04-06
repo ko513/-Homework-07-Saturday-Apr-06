@@ -1,29 +1,36 @@
 
+@font-face {
+  font-family: "railway";
+  src: url(../fonts/railway.otf) }
+
 body {
   background: #707a7d;
-  font-family: "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
-  letter-spacing: 1.5px;
-  padding-bottom: 50px;
+  letter-spacing: 2px;
+  padding-bottom: 20px;
 }
 
 .container { max-width: 1024px; padding: 0px; }
 
+
+
+/*  =====  CONTENT  =====  */
+
 .jumbotron {
   background-color: #707a7d;
   color: white;
-  height: 215px;
+  height: 200px;
   margin-bottom: 0;
   padding-top: 0px;
   text-align: center;
 }
 
-.jumbotron h1 {
-  font-weight: bold;
-}
 
-.jumbotron p {
-  font-size: 20px;
-  font-style: italic;
+.card {
+  background: #cfcfcf;
+  border: none;
+  margin-top: 15px;
+  padding: 0px;
+  width: 1024px;
 }
 
 .card-header {
@@ -31,25 +38,93 @@ body {
   text-align: center;
 }
 
+.arrivals.card-header:first-child {
+  border-top-left-radius: 0px  !important;
+  border-top-right-radius: 0px !important;
+}
+
 .card-header p {
   font-family: Libre Baskerville, serif;
   font-weight: bold;
-  font-size: 46px;
+  font-size: 42px;
   color: #e4c01c;
   margin-bottom: 0px;
 }
 
-.card {
-  background: #cfcfcf;
-  width: 1024px;
+
+
+/*  =====  INPUT FORMS  =====  */
+
+.mt-6 { margin-top: 25px !important; }
+
+.mt-6 .card-body {
+  margin-top: 10px;
+  padding: 0px 1.25rem;
 }
 
 
+.form-group {
+  font-family: railway;
+  color: #4f161f;
+}
 
-th, tr { color: #4f161f; }
+.form-control {
+  border: 1px solid #4f161f;
+  color: #505759;
+  height: 2rem;
+  padding: .25rem .5rem;
+}
 
+.form-control:focus { border: 1px solid #4f161f !important; box-shadow: none; }
 
-button#new-train {
+button#add-train {
   background-color: #4f161f;
+  font-family: railway;
+  font-size: 1.25rem;
   color: #e4c01c;
+  margin: 10px auto 0px;
+  padding: .3rem;
+  width: 20%;
+}
+
+button#add-train:focus { box-shadow: none; }
+
+
+
+/*  =====  TABLE  =====  */
+
+.table { margin-bottom: 0px; }
+
+.table thead th {
+  border: none;
+  font-weight: bold;
+}
+
+.table th, .table tr { color: #4f161f; }
+
+.table th { color: #505759; }
+
+.table th, .table td { padding: 0.5rem 0.75rem; }
+
+.table td {
+  border-top: 1px solid #505759 !important;
+  font-family: railway;
+}
+
+.table tr th:nth-child(5), tr th:nth-child(6),
+.table tr td:nth-child(5), tr td:nth-child(6) {
+  text-align: center;
+}
+
+.table tr th:nth-child(5) { padding-left: 18px; }
+.table tr th:nth-child(6) { padding-left: 26px; }
+
+.table td.delete-icon {
+  background: url(../images/delete-icon.svg) no-repeat;
+  background-size: 20px 40px;
+}
+
+label {
+  margin-bottom: 0px;
+  margin-left: 2px;
 }

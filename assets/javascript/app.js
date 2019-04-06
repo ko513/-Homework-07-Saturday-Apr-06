@@ -13,63 +13,70 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 
-$("#new-train").on("click", function() {
+$("#add-train").on("click", function() {
   event.preventDefault();
 
-  var trainTableRow = $("<tr>");
+  var trRow = $("<tr>").addClass("trRow");
 
-  var trainName = $("#name").val();
-  trainTableRow.append($("<td>").text(trainName));
+  trRow.append($("<td>").addClass("delete-icon"));
 
-  var trainDestination = $("#destination").val();
-  trainTableRow.append($("<td>").text(trainDestination));
+  var trName = $("#tr-name").val();
+  trRow.append($("<td>").text(trName));
 
-  var trainFirstArrival = $("#first-arrival").val();
-  trainTableRow.append($("<td>").text(trainFirstArrival));
+  var trDestination = $("#tr-destination").val();
+  trRow.append($("<td>").text(trDestination));
 
-  var trainFrequency = $("#frequency").val();
-  var trainNextArrival = moment().diff(trainFrequency, "minutes")
+  var trFirstArrival = $("#tr-first-arrival").val();
 
-  trainTableRow.append($("<td>").text(trainFrequency));
-  trainTableRow.append($("<td>").text(trainNextArrival))
+  var trFrequency = $("#tr-frequency").val();
+  trRow.append($("<td>").text(trFrequency).append(" minutes"));
 
-  console.table('trainTableRow = ' + JSON.stringify(trainTableRow));
 
-  $('.train-list').append($(trainTableRow));
-  console.table('train-list = ' + $(".train-list"));
+  //  ===  Calculate the train's next arrival time, and how many minutes that is from current time  ===  //
+    
+  //  First arrival time, pushed back 1 year to make sure it comes before current time
+  trFirstArrival = moment(trFirstArrival, "HH:mm").subtract(1, "years");
+    
+  //  Difference between the first arrival minutes (eg 00:15) and the current time minutes (eg :0037)
+  var diffTime = moment().diff(moment(trFirstArrival), "minutes");
 
-  console.log($(".train-list").html())
+  //  Need the difference between the first arrival minutes (eg 00:15) and the current time minutes (eg :0037)
+  var trRemainder = diffTime % trFrequency;
 
-  database.ref().set({
-    trainList: $(".train-list").html()
-  })
+  //  Then, using frequency, you can determine how many minutes there are between current time and the next arrival
+  var trMinutesUntilArrival = trFrequency - trRemainder;
+  var nextArrival = moment().add(trMinutesUntilArrival, "minutes");
 
-  $("#name").val("")
-  $("#dest").val("")
-  $("#frequency").val("")
-  $("#next-arrival").val("")
+  trRow.append($("<td>").text(moment(nextArrival).format("hh:mm")));
+  trRow.append($("<td>").text(trMinutesUntilArrival));
+
+
+
+  //  ===  Append completed row to the table, update Firebase, clear table entry values  ===  //
+
+  $(".train-list").append(trRow);
+
+  database.ref().set({ trainList: $(".train-list").html() })
+
+  $("#tr-name").val("")
+  $("#tr-destination").val("")
+  $("#tr-first-arrival").val("")
+  $("#tr-frequency").val("")
 })
 
+
+//  Listener updates table whenever any Firebase value is changed
 database.ref().on("value", function(snapshot) {
   $(".train-list").html(snapshot.val().trainList);
 })
 
 
-/*
-$(document).on("click", ".trainTableRow", function(){
-  $(this).remove();
+//  Remove a train from the list if its delete icon is clicked; update Firebase
+$(document).on("click", ".delete-icon", function() {
+  $(this.parentNode).remove();
 
   database.ref().set({
     trainList: $(".train-list").html()
   })
 })
-*/
-
-
-$( document ).ready(function() {
-    var currentTime = moment();
-    console.log('currentTime = ' + JSON.stringify(currentTime));
-
-    $('.train-list').remove();
-});
 

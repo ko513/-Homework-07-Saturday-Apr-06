@@ -5,30 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css'/>
-    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
     <title>Somerset Train Schedule</title>
   </head>
 
   <body>
     <div class="jumbotron align-center mx-auto">
-      <img src="assets/images/bg01.jpg" width="1024" height="200">
-      <h1 class="text-center"></h1>
-      <p class="text-center"></p>
+      <img src="assets/images/bg01.jpg" width="1024" height="215">
     </div>
 
     <div class="container">
       <div class="card">
-        <div class="card-header">
+        <div class="arrivals card-header">
           <p>Somerset Line Arrivals</p>
         </div>
         <div class="card-body">
           <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">Train Name</th>
+                  <th scope="col"</th>
+                  <th scope="col">Name</th>
                   <th scope="col">Destination</th>
-                  <th scope="col">Frequency (minutes)</th>
+                  <th scope="col">Arrives Every</th>
                   <th scope="col">Next Arrival</th>
                   <th scope="col">Minutes Away</th>
                 </tr>
@@ -38,39 +36,35 @@
         </div>
       </div>
 
-      <div class="card mt-5">
-        <div class="card-header">
-          <p>Add Train</p>
-        </div>
+      <div class="card mt-6">
+        <button type="submit" id="add-train" class="btn btn-dark">Click to Add Train</button>
         <div class="card-body">
           <form>
             <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" id="name">
+              <label for="tr-name">Name</label>
+              <input type="text" class="form-control" id="tr-name">
             </div>
             <div class="form-group">
-              <label for="destination">Destination</label>
-              <input type="text" class="form-control" id="destination">
+              <label for="tr-destination">Destination</label>
+              <input type="text" class="form-control" id="tr-destination">
             </div>
             <div class="form-group">
-              <label for="first-arrival">First Arrival (Military Time - HH:mm)</label>
-              <input type="text" class="form-control" id="first-arrival">
+              <label for="tr-first-arrival">First Arrival (in Military Time, HH:mm)</label>
+              <input type="text" class="form-control" id="tr-first-arrival">
             </div>
             <div class="form-group">
-              <label for="frequency">Frequency</label>
-              <input type="text" class="form-control" id="frequency">
+              <label for="tr-next-arrival">Arrives Every (_) Minutes</label>
+              <input type="text" class="form-control" id="tr-frequency">
             </div>
-            <button type="submit" id="new-train" class="btn btn-dark">Add Train</button>
           </form>
         </div>
       </div>
     </div>
 
-
     <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-<!--     <script src='https://momentjs.com/downloads/moment.min.js'></script> -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="assets/javascript/app.js"></script>
+
   </body>
 </html>
