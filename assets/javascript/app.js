@@ -20,15 +20,15 @@ $("#add-train").on("click", function() {
 
   trRow.append($("<td>").addClass("delete-icon"));
 
-  var trName = $("#tr-name").val();
+  var trName = $("#tr-name").val().trim();
   trRow.append($("<td>").text(trName));
 
-  var trDestination = $("#tr-destination").val();
+  var trDestination = $("#tr-destination").val().trim();
   trRow.append($("<td>").text(trDestination));
 
-  var trFirstArrival = $("#tr-first-arrival").val();
+  var trFirstArrival = $("#tr-first-arrival").val().trim();
 
-  var trFrequency = $("#tr-frequency").val();
+  var trFrequency = $("#tr-frequency").val().trim();
   trRow.append($("<td>").text(trFrequency).append(" minutes"));
 
 
